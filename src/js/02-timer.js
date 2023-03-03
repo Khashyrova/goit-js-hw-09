@@ -24,38 +24,20 @@ const options = {
   onClose(selectedDates) {
     dayChoose = selectedDates[0].getTime();
     todayDate = Date.now();
-    const chooseDay = selectedDates[0].getTime();
-    const currentDate = Date.now();
 
-    if (dayChoose < currentDate) {
-      buttonStart.setAttribute('disabled', '');
-      
-      days.textContent = '00';
-      hours.textContent = '00';
-      minutes.textContent = '00';
-      seconds.textContent = '00';
-
+    if (dayChoose < todayDate) {
+      buttonStart.disabled = true;
       return Notiflix.Notify.failure('Please choose a date in the future');
     }
-    buttonStart.removeAttribute('disabled');
-
-         
-    let formatDate = convertMs(chooseDay - currentDate)
-
-    days.textContent = String(formatDate.days).padStart(2, '0');
-    hours.textContent = String(formatDate.hours).padStart(2, '0');
-    minutes.textContent = String(formatDate.minutes).padStart(2, '0');
-    seconds.textContent = String(formatDate.seconds).padStart(2, '0');
+    buttonStart.disabled = false;
   },
 };
 
 flatpickr('#datetime-picker', options);
 
 buttonStart.addEventListener('click', () => {
-
-  buttonStart.setAttribute('disabled', '');
   intervalId = setInterval(timerChenge, 1000);
-
+  buttonStart.disabled = true;
 });
  
 function timerChenge() {
@@ -65,16 +47,17 @@ function timerChenge() {
 
   if (dayChoose - todayDate <= 0) {
     clearInterval(intervalId);
-    buttonStart.removeAttribute('disabled');
+    buttonStart.disabled = false;
   
-     return  Notiflix.Notify.success('The timer is over')
+    return Notiflix.Notify.success('The timer is over')
   } 
     days.textContent = String(chengeDate.days).padStart(2, '0');
-    hours.textContent = String(chengeDate.hours).padStart(2, '0');;
-    minutes.textContent = String(chengeDate.minutes).padStart(2, '0');;
-    seconds.textContent = String(chengeDate.seconds).padStart(2, '0');;
+    hours.textContent = String(chengeDate.hours).padStart(2, '0');
+    minutes.textContent = String(chengeDate.minutes).padStart(2, '0');
+    seconds.textContent = String(chengeDate.seconds).padStart(2, '0');
   
 }
+
     
 
 

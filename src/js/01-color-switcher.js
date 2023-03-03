@@ -11,15 +11,14 @@ let timerId = null;
 function onStart() {
   timerId = setInterval(getBgColor, 1000);
 
-    buttonStart.toggleAttribute('disabled');
-    buttonStop.removeAttribute('disabled');
+    buttonStart.disabled = true
+    // buttonStop.removeAttribute('disabled');
 }
 
 function onStop() {
   clearInterval(timerId);
-
-    buttonStart.removeAttribute('disabled');
-    buttonStop.toggleAttribute('disabled');
+    // buttonStart.removeAttribute('disabled');
+    buttonStop.disabled = true
 }
 
 function getBgColor() {
