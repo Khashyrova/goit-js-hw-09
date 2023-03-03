@@ -7,18 +7,20 @@ buttonStart.addEventListener('click', onStart);
 buttonStop.addEventListener('click', onStop);
 
 let timerId = null;
+buttonStop.disabled = true;
 
 function onStart() {
   timerId = setInterval(getBgColor, 1000);
 
-    buttonStart.disabled = true
-    // buttonStop.removeAttribute('disabled');
+  buttonStart.disabled = true;
+  buttonStop.disabled = false;
 }
 
 function onStop() {
   clearInterval(timerId);
-    // buttonStart.removeAttribute('disabled');
-    buttonStop.disabled = true
+
+  buttonStop.disabled = true;
+  buttonStart.disabled = false;
 }
 
 function getBgColor() {

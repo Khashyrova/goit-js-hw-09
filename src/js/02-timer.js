@@ -38,6 +38,7 @@ flatpickr('#datetime-picker', options);
 buttonStart.addEventListener('click', () => {
   intervalId = setInterval(timerChenge, 1000);
   buttonStart.disabled = true;
+  input.disabled = true;
 });
  
 function timerChenge() {
@@ -47,7 +48,7 @@ function timerChenge() {
 
   if (dayChoose - todayDate <= 0) {
     clearInterval(intervalId);
-    buttonStart.disabled = false;
+    
   
     return Notiflix.Notify.success('The timer is over')
   } 
